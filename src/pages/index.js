@@ -11,11 +11,7 @@ import {
 } from '../components'
 
 const HomePage = () => {
-  
-  return (
-    <h2>gatsby airtable starter</h2>
-  )
+  return <h2>home page</h2>
 }
-
 
 export default HomePage
