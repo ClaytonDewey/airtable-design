@@ -8,10 +8,21 @@ import SearchButtons from './SearchButtons'
 const Projects = ({ projects: data, title, page }) => {
   const [projects, setProjects] = React.useState(data)
 
+  // more logic here
+  const setBackToAll = () => {
+    setProjects(data)
+  }
+
   return (
     <Wrapper className="section">
       <Title title={title || 'projects'} />
-      {/* search buttons here */}
+      {page && (
+        <SearchButtons
+          projects={data}
+          setProjects={setProjects}
+          setBackToAll={setBackToAll}
+        />
+      )}
       <div className="section-center">
         {projects.map(item => {
           const { id } = item
