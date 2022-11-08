@@ -1,26 +1,24 @@
 const airtableQuery = `
-  {
-    customers: allAirtable(filter: {table: {eq: "Projects"}}) {
-      nodes {
-        id
-        data {
-          date
-          name
-          type
-          image {
-            localFiles {
-              childImageSharp {
-                gatsbyImageData
-              }
+{
+  allAirtable(filter: {table: {eq: "Projects"}}) {
+    nodes {
+      data {
+        date
+        name
+        type
+        image {
+          localFiles {
+            childImageSharp {
+              gatsbyImageData
             }
           }
         }
       }
+      id
     }
   }
-
+}
 `
-
 function pageToAlgoliaRecord({ id, data: { name, type, date, image } }) {
   return {
     objectID: id,
@@ -30,7 +28,6 @@ function pageToAlgoliaRecord({ id, data: { name, type, date, image } }) {
     image: { ...image.localFiles[0].childImageSharp.gatsbyImageData },
   }
 }
-
 const queries = [
   {
     query: airtableQuery,
