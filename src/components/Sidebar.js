@@ -4,9 +4,26 @@ import { MdClose } from 'react-icons/md'
 import { Link } from 'gatsby'
 import { GatsbyContext } from '../context/context'
 const Sidebar = () => {
+  const { links } = useContext(GatsbyContext)
+
   return (
     <Wrapper>
-      <div className="container">sidebar component</div>
+      <div className="container">
+        <button>
+          <MdClose className="icon" />
+        </button>
+        <div className="links">
+          {links.map((link, index) => {
+            const { url, label, icon } = link
+            return (
+              <Link to={url} key={index}>
+                {icon}
+                {label}
+              </Link>
+            )
+          })}
+        </div>
+      </div>
     </Wrapper>
   )
 }
